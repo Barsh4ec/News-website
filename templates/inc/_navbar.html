@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'home' %}">Сайт новин</a>
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="media/photo/2022/logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -7,8 +7,10 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Головна сторінка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'add_news' %}">Добавити новину</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Українська неправда</a></li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'add_news' %}">Додати новину</a></li>
+            {% endif %}
         </ul>
         <span class="navbar-text">
             {% if request.user.is_authenticated %}

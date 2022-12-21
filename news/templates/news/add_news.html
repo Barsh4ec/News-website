@@ -1,62 +1,189 @@
 {% extends 'base.html' %}
 
 {% block title %}Додавання новини{% endblock %}
-
-{% block sidebar %}
-    {% include 'inc/_sidebar.html' %}
-{% endblock %}
-
 {% block content %}
-<h1>Додавання новини</h1>
+<link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap"
+        rel="stylesheet"
+/>
 
-<form action="{% url 'add_news' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: bolder;
+  }
 
-    {% comment %}
-    {{ form.as_p }}
-    {% endcomment %}
+  body {
+<!--    background-image: url(clean-medical-background_53876-97927.webp);-->
+    background-repeat: no-repeat;
+    background-size: 1920px 975px;
+  }
 
-    {{ form.non_field_errors }}
-    <div class="form-group">
-        <label for="{{ form.title.id_for_label }}" class="form-label">Назва: </label>
-        {{ form.title }}
-        <div class="invalid-feedback">
-            {{ form.title.errors }}
+  .wrapper {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login_form {
+    background: #EFF5F5;
+    padding: 25px;
+    border-radius: 40px;
+    width: 1000px;
+  }
+
+  .login_form .title {
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #2E3538;;
+    letter-spacing: 4px;
+    font-weight: 900;
+  }
+
+  .form_wrap {
+    margin-top: 35px;
+  }
+
+  .form_wrap .input_wrap {
+    margin-bottom: 20px;
+  }
+
+  .form_wrap .input_wrap:last-child {
+    margin-bottom: 10;
+  }
+
+  .form_wrap .input_wrap label {
+    color: #393E46;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .form_wrap input[type="text"] {
+    width: 100%;
+    border-radius: 3px;
+    border: 1.3px solid #9597a6;
+    padding: 10px;
+    outline: none;
+  }
+  .form_wrap input[type="password"] {
+    width: 100%;
+    border-radius: 3px;
+    border: 1.3px solid #9597a6;
+    padding: 10px;
+    outline: none;
+  }
+
+  .form_wrap input[type="text"]:focus {
+    border-color: #77d5cc;
+  }
+
+  .form_wrap input[type="password"]:focus {
+    border-color: #77d5cc;
+  }
+
+  .form_wrap .login_btn {
+    text-align: center;
+    width: 100%;
+    background: #77d5cc;
+    padding: 10px;
+    border: 0;
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  .form_wrap .login_btn:hover {
+    background: #bde9e3;
+  }
+
+  .form_wrap p {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+  }
+  .form_wrap a {
+
+      display: block;
+      text-align: center;
+      width: 30%;
+      margin-left: 122px;
+      background: #77d5cc;
+      padding: 10px;
+      border: 0;
+      color: white;
+      font-size: 15px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+  .form_wrap a:hover{
+
+     background-color: #bde9e3;
+
+  }
+
+
+
+
+</style>
+<div class="wrapper">
+    <div class="login_form">
+        <div class="title">
+            <label>Додати новину</label>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="{{ form.content.id_for_label }}" class="form-label">Вміст: </label>
-        {{ form.content }}
-        <div class="invalid-feedback">
-            {{ form.content.errors }}
-        </div>
-    </div>
+        <form action="{% url 'add_news' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-    <div class="form-group">
-        <label for="{{ form.category.id_for_label }}" class="form-label">Категорія: </label>
-        {{ form.category }}
-        <div class="invalid-feedback">
-            {{ form.category.errors }}
-        </div>
-    </div>
+            {% comment %}
+            {{ form.as_p }}
+            {% endcomment %}
 
-    <div class="form-group">
-        <label for="{{ form.photo.id_for_label }}" class="form-label">Фото: </label>
-        {{ form.photo }}
-        <div class="invalid-feedback">
-            {{ form.photo.errors }}
-        </div>
-    </div>
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="form-label">Назва: </label>
+                {{ form.title }}
+                <div class="invalid-feedback">
+                    {{ form.title.errors }}
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label for="{{ form.is_published.id_for_label }}" class="form-label">Опублікувати: </label>
-        {{ form.is_published }}
-        <div class="invalid-feedback">
-            {{ form.is_published.errors }}
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="{{ form.content.id_for_label }}" class="form-label">Вміст: </label>
+                {{ form.content }}
+                <div class="invalid-feedback">
+                    {{ form.content.errors }}
+                </div>
+            </div>
 
-    <button type="submit" class="btn btn-primary btn-block">Додати новину</button>
-</form>
+            <div class="form-group">
+                <label for="{{ form.category.id_for_label }}" class="form-label">Категорія: </label>
+                {{ form.category }}
+                <div class="invalid-feedback">
+                    {{ form.category.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.photo.id_for_label }}" class="form-label">Фото: </label>
+                {{ form.photo }}
+                <div class="invalid-feedback">
+                    {{ form.photo.errors }}
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn btn-dark btn-block">Додати новину</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
